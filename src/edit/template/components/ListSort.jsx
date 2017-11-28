@@ -40,7 +40,7 @@ function findChildInChildrenByKey(children, key) {
 
 /*
 两个参数(都是数组表示所有的子组件)：当前子组件，要更新的子组件
-
+传进来的子元素（React.children）按照当前子元素顺序进行排序，如果多出来的push到数组的后面
 */
 function mergeChildren(prev, next) {
 	const ret = [];
@@ -95,7 +95,9 @@ export default class ListSort extends React.Component {
 		},
 	};
 
+	/*如果构造函数内要用到props则传递*/
 	constructor(props) {
+		console.log(props)
 		super(props);
 		this.state = {
 			/*子内容*/
@@ -138,7 +140,7 @@ export default class ListSort extends React.Component {
 	}
 
 	/*写这一段的原因*/
-	/*组件接收到一个新的prop时被调用*/
+	/*组件接收到一个新的prop时被调用，为的是应对吧React.children有更新*/
 	componentWillReceiveProps(nextProps) {
 		/*当前组件*/
 		const currentChildren = this.state.children;
@@ -456,7 +458,7 @@ export default class ListSort extends React.Component {
 		this.setState({ childStyle, animation });
 	};
 
-	/*单元素动画*/
+	/*单元素动画，拖拽时能有动画效果*/
 	getChildren = (item, i) => {
 		const onMouseDown = this.onMouseDown.bind(this, i);
 		const style = { ...this.state.childStyle[i] };
