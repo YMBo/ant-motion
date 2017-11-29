@@ -459,6 +459,8 @@ export default class ListSort extends React.Component {
 	};
 
 	/*单元素动画，拖拽时能有动画效果*/
+	/*mouseDown绑定在每一个元素上面*/
+	/*TweenOne没有找到这个用法*/
 	getChildren = (item, i) => {
 		const onMouseDown = this.onMouseDown.bind(this, i);
 		const style = { ...this.state.childStyle[i] };
@@ -494,6 +496,7 @@ export default class ListSort extends React.Component {
 		const childrenToRender =this.state.children.map(this.getChildren);
 		const props = { ...this.props };
 		/*这一段的删除是删除props*/
+		/*这一块不明白*/
 		[
 		'component',
 		'animType',
